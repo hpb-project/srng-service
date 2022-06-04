@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/hpb-project/srng-service/async"
 )
 

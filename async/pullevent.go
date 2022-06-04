@@ -8,6 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/hpb-project/srng-service/cache"
 	"github.com/prometheus/common/log"
 	"math/big"
 	"strings"
@@ -26,12 +27,7 @@ var (
 	bigK       = big.NewInt(1000)
 )
 
-type logHandler func(log types.Log) error
-
-//type ContractEvent struct {
-//	Addr common.Address
-//	Handler logHandler
-//}
+type logHandler func(log types.Log, client *ethclient.Client, addr common.Address) error
 
 type PullEvent struct {
 	ctx             context.Context
@@ -75,83 +71,13 @@ func init() {
 	pullTask.ctx = context.Background()
 	pullTask.contractList = make([]common.Address, 0)
 	{
-		arenaAddrs := getAddress(beego.AppConfig.String("arenaContract"))
-		for _, arenaAddr := range arenaAddrs {
-			if len(arenaAddr) > 0 {
-				addr := common.HexToAddress(arenaAddr)
+		oracleAddr := beego.AppConfig.String("oracleAddr")
+		{
+			if len(oracleAddr) > 0 {
+				addr := common.HexToAddress(oracleAddr)
 				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseArenaContractHandler
-				log.Info("add contract to fillter log", "address ", arenaAddr)
-			}
-		}
-
-		arenaExtraAddrs := getAddress(beego.AppConfig.String("arenaExtraContract"))
-		for _, arenaExtraAddr := range arenaExtraAddrs {
-			if len(arenaExtraAddr) > 0 {
-				addr := common.HexToAddress(arenaExtraAddr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseArenaExtraHandler
-				log.Info("add contract to fillter log", "address ", arenaExtraAddr)
-			}
-		}
-
-		arenaExtra2Addrs := getAddress(beego.AppConfig.String("arenaExtra2Contract"))
-		for _, arenaExtra2Addr := range arenaExtra2Addrs {
-			if len(arenaExtra2Addr) > 0 {
-				addr := common.HexToAddress(arenaExtra2Addr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseArenaExtra2Handler
-				log.Info("add contract to fillter log", "address ", arenaExtra2Addr)
-			}
-		}
-
-		arenaExtra3Addrs := getAddress(beego.AppConfig.String("arenaExtra3Contract"))
-		for _, arenaExtra3Addr := range arenaExtra3Addrs {
-			if len(arenaExtra3Addr) > 0 {
-				addr := common.HexToAddress(arenaExtra3Addr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseArenaExtra3Handler
-				log.Info("add contract to fillter log", "address ", arenaExtra3Addr)
-			}
-		}
-
-		horseEquipAddrs := getAddress(beego.AppConfig.String("horseEquipContract"))
-		for _, horseEquipAddr := range horseEquipAddrs {
-			if len(horseEquipAddr) > 0 {
-				addr := common.HexToAddress(horseEquipAddr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseEquipContractHandler
-				log.Info("add contract to fillter log", "address ", horseEquipAddr)
-			}
-		}
-
-		horseRaceAddrs := getAddress(beego.AppConfig.String("horseRaceContract"))
-		for _, horseRaceAddr := range horseRaceAddrs {
-			if len(horseRaceAddr) > 0 {
-				addr := common.HexToAddress(horseRaceAddr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseRaceContractHandler
-				log.Info("add contract to fillter log", "address ", horseRaceAddr)
-			}
-		}
-
-		horseRaceExtraAddrs := getAddress(beego.AppConfig.String("horseRaceExtra1Contract"))
-		for _, horseRaceExtraAddr := range horseRaceExtraAddrs {
-			if len(horseRaceExtraAddr) > 0 {
-				addr := common.HexToAddress(horseRaceExtraAddr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseRaceExtra1Handler
-				log.Info("add contract to fillter log", "address ", horseRaceExtraAddr)
-			}
-		}
-
-		horseRaceExtra2Addrs := getAddress(beego.AppConfig.String("horseRaceExtra2Contract"))
-		for _, horseRaceExtra2Addr := range horseRaceExtra2Addrs {
-			if len(horseRaceExtra2Addr) > 0 {
-				addr := common.HexToAddress(horseRaceExtra2Addr)
-				pullTask.contractList = append(pullTask.contractList, addr)
-				pullTask.contractHandler[addr] = HorseRaceExtra2Handler
-				log.Info("add contract to fillter log", "address ", horseRaceExtra2Addr)
+				pullTask.contractHandler[addr] = OracleContractHandler
+				log.Info("add contract to fillter log", "address ", oracleAddr)
 			}
 		}
 	}
@@ -193,7 +119,7 @@ func (p *PullEvent) GetLogs() {
 			for _, vlog := range allLogs {
 				handle, exist := p.contractHandler[vlog.Address]
 				if exist {
-					handle(vlog)
+					handle(vlog, p.client, vlog.Address)
 				}
 			}
 		}
