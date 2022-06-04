@@ -1,13 +1,10 @@
 package controllers
 
-/**
-常量获取接口
-*/
-type ConstantController struct {
+type StatController struct {
 	BaseController
 }
 
-func (e *ConstantController) GetConstant() {
+func (e *StatController) ConsumedHistory() {
 
 	e.ResponseInfo(200, nil, nil)
 }

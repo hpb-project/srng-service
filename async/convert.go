@@ -6,11 +6,13 @@ import (
 	"github.com/hpb-project/srng-service/contracts"
 	"github.com/hpb-project/srng-service/db"
 	"strings"
+	"time"
 )
 
 func ToTbSubScribe(vLog *types.Log, sub *contracts.OracleSubscribe) *db.TbSubscribe {
 	tbSubscribe := new(db.TbSubscribe)
 	tbSubscribe.BlockHash = strings.ToLower(vLog.BlockHash.String())
+	tbSubscribe.TxTime = time.Unix(sub.Time.Int64(), 0)
 	tbSubscribe.TxHash = strings.ToLower(vLog.TxHash.String())
 	tbSubscribe.BlockId = int64(vLog.BlockNumber)
 	tbSubscribe.Commiter = strings.ToLower(sub.Commiter.String())
@@ -25,6 +27,7 @@ func ToTbSubScribe(vLog *types.Log, sub *contracts.OracleSubscribe) *db.TbSubscr
 func ToTbUnSubScribe(vLog *types.Log, unsub *contracts.OracleUnSubscribe) *db.TbUnSubscribe {
 	tbUnSubscribe := new(db.TbUnSubscribe)
 	tbUnSubscribe.BlockHash = strings.ToLower(vLog.BlockHash.String())
+	tbUnSubscribe.TxTime = time.Unix(unsub.Time.Int64(), 0)
 	tbUnSubscribe.TxHash = strings.ToLower(vLog.TxHash.String())
 	tbUnSubscribe.BlockId = int64(vLog.BlockNumber)
 	tbUnSubscribe.Commiter = strings.ToLower(unsub.Commiter.String())
@@ -39,6 +42,7 @@ func ToTbUnSubScribe(vLog *types.Log, unsub *contracts.OracleUnSubscribe) *db.Tb
 func ToTbCommitHash(vLog *types.Log, commit *contracts.OracleCommitHash) *db.TbCommitHash {
 	tbCommitHash := new(db.TbCommitHash)
 	tbCommitHash.BlockHash = strings.ToLower(vLog.BlockHash.String())
+	tbCommitHash.TxTime = time.Unix(commit.Time.Int64(), 0)
 	tbCommitHash.TxHash = strings.ToLower(vLog.TxHash.String())
 	tbCommitHash.BlockId = int64(vLog.BlockNumber)
 	tbCommitHash.Commiter = strings.ToLower(commit.Sender.String())
@@ -52,6 +56,7 @@ func ToTbCommitHash(vLog *types.Log, commit *contracts.OracleCommitHash) *db.TbC
 func ToTbRandomConsumed(vLog *types.Log, consumed *contracts.OracleRandomConsumed) *db.TbRandomConsumed {
 	tbRandomConsumed := new(db.TbRandomConsumed)
 	tbRandomConsumed.BlockHash = strings.ToLower(vLog.BlockHash.String())
+	tbRandomConsumed.TxTime = time.Unix(consumed.Time.Int64(), 0)
 	tbRandomConsumed.TxHash = strings.ToLower(vLog.TxHash.String())
 	tbRandomConsumed.BlockId = int64(vLog.BlockNumber)
 	tbRandomConsumed.Committer = strings.ToLower(consumed.Commiter.String())
@@ -66,6 +71,7 @@ func ToTbRandomConsumed(vLog *types.Log, consumed *contracts.OracleRandomConsume
 func ToTbReveal(vLog *types.Log, reveal *contracts.OracleRevealSeed) *db.TbReveal {
 	tbReveal := new(db.TbReveal)
 	tbReveal.BlockHash = strings.ToLower(vLog.BlockHash.String())
+	tbReveal.TxTime = time.Unix(reveal.Time.Int64(), 0)
 	tbReveal.TxHash = strings.ToLower(vLog.TxHash.String())
 	tbReveal.BlockId = int64(vLog.BlockNumber)
 	tbReveal.Committer = strings.ToLower(reveal.Commiter.String())

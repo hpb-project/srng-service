@@ -14,6 +14,7 @@ type TbRandomConsumed struct {
 	Id         int64     `orm:"column(id);pk"`
 	BlockId    int64     `orm:"column(block_id);null" description:"区块号"`
 	BlockHash  string    `orm:"column(block_hash);size(255);null" description:"blockHash"`
+	TxTime     time.Time `orm:"column(tx_time);type(datetime);null" description:"交易时间"`
 	TxHash     string    `orm:"column(tx_hash);size(255);null" description:"交易hash"`
 	Consumer   string    `orm:"column(consumer);size(255);null" description:"消费者合约"`
 	Committer  string    `orm:"column(commiter);size(255);null" description:"提交者地址"`
@@ -158,4 +159,36 @@ func DeleteTbRandomConsumed(id int64) (err error) {
 		}
 	}
 	return
+}
+
+type HistoryConsumed struct {
+	Date  time.Time
+	Count int64
+}
+
+func GetHistoryConsumedCount(days int) []*HistoryConsumed {
+	var maxHistoryDays = 14
+	if days < 0 {
+		return []*HistoryConsumed{}
+	}
+	if days > maxHistoryDays {
+		days = maxHistoryDays
+	}
+
+	now := time.Now()
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
+	o := orm.NewOrm()
+	list := make([]*HistoryConsumed, 0)
+	for i := 1; i <= days; i++ {
+		theday := today.AddDate(0, 0, 0-i)
+		theNextDay := today.AddDate(0, 0, 1-i)
+		num, _ := o.QueryTable(new(TbRandomConsumed).TableName()).Filter("TxTime__gt", theday).Filter("TxTime__lt", theNextDay).Count()
+		r := &HistoryConsumed{
+			Date:  theday,
+			Count: num,
+		}
+		//beego.Info("get history txn ", theday, "count ", num)
+		list = append(list, r)
+	}
+	return list
 }

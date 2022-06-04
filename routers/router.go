@@ -6,5 +6,5 @@ import (
 )
 
 func init() {
-	beego.Router("/srng/api/v1/consumedstat", &controllers.ConstantController{}, "get:GetConstant")
+	beego.Router("/srng/api/v1/consumedhistory", &controllers.StatController{}, "post::ConsumedHistory")
 }

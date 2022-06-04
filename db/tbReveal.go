@@ -14,6 +14,7 @@ type TbReveal struct {
 	Id         int64     `orm:"column(id);pk"`
 	BlockId    int64     `orm:"column(block_id);null" description:"区块号"`
 	BlockHash  string    `orm:"column(block_hash);size(255);null" description:"blockHash"`
+	TxTime     time.Time `orm:"column(tx_time);type(datetime);null" description:"交易时间"`
 	TxHash     string    `orm:"column(tx_hash);size(255);null" description:"交易hash"`
 	Committer  string    `orm:"column(commiter);size(255);null" description:"提交者地址"`
 	Hash       string    `orm:"column(hash);size(255);null" description:"Commit Hash"`
