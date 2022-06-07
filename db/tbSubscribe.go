@@ -30,10 +30,6 @@ func (t *TbSubscribe) TableName() string {
 	return "tb_subscribe"
 }
 
-func init() {
-	orm.RegisterModel(new(TbSubscribe))
-}
-
 // AddTbSubscribe insert a new TbSubscribe into database and returns
 // last inserted Id on success.
 func AddTbSubscribe(m *TbSubscribe) (id int64, err error) {

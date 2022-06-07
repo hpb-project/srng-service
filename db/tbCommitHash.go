@@ -29,10 +29,6 @@ func (t *TbCommitHash) TableName() string {
 	return "tb_commithash"
 }
 
-func init() {
-	orm.RegisterModel(new(TbCommitHash))
-}
-
 // AddTbCommitHash insert a new TbCommitHash into database and returns
 // last inserted Id on success.
 func AddTbCommitHash(m *TbCommitHash) (id int64, err error) {

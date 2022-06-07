@@ -30,10 +30,6 @@ func (t *TbRandomConsumed) TableName() string {
 	return "tb_random_consumed"
 }
 
-func init() {
-	orm.RegisterModel(new(TbRandomConsumed))
-}
-
 // AddTbRandomConsumed insert a new TbRandomConsumed into database and returns
 // last inserted Id on success.
 func AddTbRandomConsumed(m *TbRandomConsumed) (id int64, err error) {

@@ -5,12 +5,14 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/hpb-project/srng-service/contracts"
 	"github.com/hpb-project/srng-service/db"
+	"github.com/hpb-project/srng-service/utils"
 	"strings"
 	"time"
 )
 
 func ToTbSubScribe(vLog *types.Log, sub *contracts.OracleSubscribe) *db.TbSubscribe {
 	tbSubscribe := new(db.TbSubscribe)
+	tbSubscribe.Id = utils.GetSnowflakeId()
 	tbSubscribe.BlockHash = strings.ToLower(vLog.BlockHash.String())
 	tbSubscribe.TxTime = time.Unix(sub.Time.Int64(), 0)
 	tbSubscribe.TxHash = strings.ToLower(vLog.TxHash.String())
@@ -26,6 +28,7 @@ func ToTbSubScribe(vLog *types.Log, sub *contracts.OracleSubscribe) *db.TbSubscr
 
 func ToTbUnSubScribe(vLog *types.Log, unsub *contracts.OracleUnSubscribe) *db.TbUnSubscribe {
 	tbUnSubscribe := new(db.TbUnSubscribe)
+	tbUnSubscribe.Id = utils.GetSnowflakeId()
 	tbUnSubscribe.BlockHash = strings.ToLower(vLog.BlockHash.String())
 	tbUnSubscribe.TxTime = time.Unix(unsub.Time.Int64(), 0)
 	tbUnSubscribe.TxHash = strings.ToLower(vLog.TxHash.String())
@@ -41,6 +44,7 @@ func ToTbUnSubScribe(vLog *types.Log, unsub *contracts.OracleUnSubscribe) *db.Tb
 
 func ToTbCommitHash(vLog *types.Log, commit *contracts.OracleCommitHash) *db.TbCommitHash {
 	tbCommitHash := new(db.TbCommitHash)
+	tbCommitHash.Id = utils.GetSnowflakeId()
 	tbCommitHash.BlockHash = strings.ToLower(vLog.BlockHash.String())
 	tbCommitHash.TxTime = time.Unix(commit.Time.Int64(), 0)
 	tbCommitHash.TxHash = strings.ToLower(vLog.TxHash.String())
@@ -55,6 +59,7 @@ func ToTbCommitHash(vLog *types.Log, commit *contracts.OracleCommitHash) *db.TbC
 
 func ToTbRandomConsumed(vLog *types.Log, consumed *contracts.OracleRandomConsumed) *db.TbRandomConsumed {
 	tbRandomConsumed := new(db.TbRandomConsumed)
+	tbRandomConsumed.Id = utils.GetSnowflakeId()
 	tbRandomConsumed.BlockHash = strings.ToLower(vLog.BlockHash.String())
 	tbRandomConsumed.TxTime = time.Unix(consumed.Time.Int64(), 0)
 	tbRandomConsumed.TxHash = strings.ToLower(vLog.TxHash.String())
@@ -70,6 +75,7 @@ func ToTbRandomConsumed(vLog *types.Log, consumed *contracts.OracleRandomConsume
 
 func ToTbReveal(vLog *types.Log, reveal *contracts.OracleRevealSeed) *db.TbReveal {
 	tbReveal := new(db.TbReveal)
+	tbReveal.Id = utils.GetSnowflakeId()
 	tbReveal.BlockHash = strings.ToLower(vLog.BlockHash.String())
 	tbReveal.TxTime = time.Unix(reveal.Time.Int64(), 0)
 	tbReveal.TxHash = strings.ToLower(vLog.TxHash.String())

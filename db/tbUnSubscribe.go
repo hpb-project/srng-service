@@ -30,10 +30,6 @@ func (t *TbUnSubscribe) TableName() string {
 	return "tb_unsubscribe"
 }
 
-func init() {
-	orm.RegisterModel(new(TbUnSubscribe))
-}
-
 // AddTbUnSubscribe insert a new TbUnSubscribe into database and returns
 // last inserted Id on success.
 func AddTbUnSubscribe(m *TbUnSubscribe) (id int64, err error) {

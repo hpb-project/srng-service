@@ -12,7 +12,7 @@ import (
 )
 
 func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common.Address) error {
-	logs.Info("handler arena contract logs")
+	logs.Info("handler oracle contract logs")
 	ormer := orm.NewOrm()
 	filter, err := contracts.NewOracleFilterer(addr, client)
 	if err != nil {
@@ -21,6 +21,7 @@ func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common
 	}
 	{
 		method := vLog.Topics[0]
+		logs.Info("got event ", vLog)
 		switch strings.ToLower(method.String()) {
 		case EventSubscribe:
 			sub, err := filter.ParseSubscribe(vLog)
@@ -30,9 +31,9 @@ func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common
 			}
 			logs.Info("got event subscribe", sub)
 			tbSubscribe := ToTbSubScribe(&vLog, sub)
-			_, err = ormer.Insert(&tbSubscribe)
+			_, err = ormer.Insert(tbSubscribe)
 			if err != nil {
-				beego.Error("ormer.Insert(&tbSubscribe) error ", err.Error())
+				beego.Error("ormer.Insert(tbSubscribe) error ", err.Error())
 				return err
 			}
 
@@ -44,9 +45,9 @@ func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common
 			}
 			logs.Info("got event unsubscribe", unsub)
 			tbUnSubscribe := ToTbUnSubScribe(&vLog, unsub)
-			_, err = ormer.Insert(&tbUnSubscribe)
+			_, err = ormer.Insert(tbUnSubscribe)
 			if err != nil {
-				beego.Error("ormer.Insert(&tbUnSubscribe) error ", err.Error())
+				beego.Error("ormer.Insert(tbUnSubscribe) error ", err.Error())
 				return err
 			}
 		case EventCommitHash:
@@ -57,9 +58,9 @@ func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common
 			}
 			logs.Info("got event commit", commit)
 			tbCommitHash := ToTbCommitHash(&vLog, commit)
-			_, err = ormer.Insert(&tbCommitHash)
+			_, err = ormer.Insert(tbCommitHash)
 			if err != nil {
-				beego.Error("ormer.Insert(&tbCommitHash) error ", err.Error())
+				beego.Error("ormer.Insert(tbCommitHash) error ", err.Error())
 				return err
 			}
 		case EventRevealSeed:
@@ -70,9 +71,9 @@ func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common
 			}
 			logs.Info("got event reveal", reveal)
 			tbReveal := ToTbReveal(&vLog, reveal)
-			_, err = ormer.Insert(&tbReveal)
+			_, err = ormer.Insert(tbReveal)
 			if err != nil {
-				beego.Error("ormer.Insert(&tbRandomConsume) error ", err.Error())
+				beego.Error("ormer.Insert(tbRandomConsume) error ", err.Error())
 				return err
 			}
 		case EventRandomConsumed:
@@ -83,9 +84,9 @@ func OracleContractHandler(vLog types.Log, client *ethclient.Client, addr common
 			}
 			logs.Info("got event consume", consume)
 			tbRandomConsume := ToTbRandomConsumed(&vLog, consume)
-			_, err = ormer.Insert(&tbRandomConsume)
+			_, err = ormer.Insert(tbRandomConsume)
 			if err != nil {
-				beego.Error("ormer.Insert(&tbRandomConsume) error ", err.Error())
+				beego.Error("ormer.Insert(tbRandomConsume) error ", err.Error())
 				return err
 			}
 		}

@@ -30,10 +30,6 @@ func (t *TbReveal) TableName() string {
 	return "tb_reveal"
 }
 
-func init() {
-	orm.RegisterModel(new(TbReveal))
-}
-
 // AddTbReveal insert a new TbReveal into database and returns
 // last inserted Id on success.
 func AddTbReveal(m *TbReveal) (id int64, err error) {
