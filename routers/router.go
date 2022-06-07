@@ -13,6 +13,7 @@ func init() {
 			//用户信息
 			beego.NSRouter("/consumedHistory", &controllers.StatController{}, "post:ConsumedHistory"),
 			beego.NSRouter("/consumedOneday", &controllers.StatController{}, "post:ConsumedOneDay"),
+			beego.NSRouter("/tokeninfo", &controllers.TokenController{}, "post:TokenInfo"),
 		),
 	)
 	beego.AddNamespace(ns)

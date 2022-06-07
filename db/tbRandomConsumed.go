@@ -163,7 +163,7 @@ type HistoryConsumed struct {
 }
 
 func GetHistoryConsumedCount(days int) []*HistoryConsumed {
-	var maxHistoryDays = 14
+	var maxHistoryDays = 7
 	if days < 0 {
 		return []*HistoryConsumed{}
 	}
@@ -174,7 +174,7 @@ func GetHistoryConsumedCount(days int) []*HistoryConsumed {
 	now := time.Now()
 	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 	o := orm.NewOrm()
-	list := make([]*HistoryConsumed, 0)
+	list := make([]*HistoryConsumed, days)
 	for i := 1; i <= days; i++ {
 		theday := today.AddDate(0, 0, 0-i)
 		theNextDay := today.AddDate(0, 0, 1-i)
@@ -183,8 +183,9 @@ func GetHistoryConsumedCount(days int) []*HistoryConsumed {
 			Date:  theday,
 			Count: num,
 		}
+		list[days-i] = r
 		//beego.Info("get history txn ", theday, "count ", num)
-		list = append(list, r)
+		//list = append(list, r)
 	}
 	return list
 }

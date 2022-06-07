@@ -1,19 +1,27 @@
 package async
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hpb-project/srng-service/cache"
+	"github.com/hpb-project/srng-service/contracts"
 	"github.com/prometheus/common/log"
+	"io/ioutil"
 	"math/big"
+	"net/http"
 	"strings"
 	"time"
 )
+
 
 const (
 	LastSyncBlockKey = "lastSyncBlock"
@@ -85,6 +93,76 @@ func init() {
 
 func SyncLogs() {
 	pullTask.GetLogs()
+}
+
+func GetTokenInfo() map[string]interface{} {
+	return pullTask.GetTokenInfo()
+}
+
+type HoldInfo struct {
+	Data json.RawMessage `json:"data"`
+	Code int	`json:"code"`
+	Msg string `json:"enMsg"`
+}
+
+type RequestParam struct {
+	Start string  	`json:"start"`
+	Length string 	    `json:"length"`
+	TokenAddr string `json:"token_address"`
+	TokenType int `json:"token_types"`
+}
+
+func (p *PullEvent) GetTokenInfo() map[string]interface{} {
+	var info = make(map[string]interface{})
+	info["name"] = "HRG Token"
+	info["symbol"] = "HRG"
+	info["supply"] = "0"
+	info["csupply"] = "0"
+	info["price"] = "0.0"
+	info["holdlist"] = nil
+
+	tokenAddr := beego.AppConfig.String("tokenAddr")
+	{
+		addr := common.HexToAddress(tokenAddr)
+		hrg,_ := contracts.NewToken(addr, p.client)
+		unit := new(big.Int).SetInt64(1000000000000000000)
+		opt := bind.CallOpts{}
+		supply,_ := hrg.TotalSupply(&opt)
+		supply = new(big.Int).Div(supply, unit)
+		csupply := new(big.Int).Sub(supply,big.NewInt(50000000))
+
+		info["supply"] = supply.Text(10)
+		info["csupply"] = csupply.Text(10)
+	}
+	{
+		param := RequestParam{
+			Start: "1",
+			Length: "10",
+			TokenAddr: strings.ToLower(tokenAddr),
+			TokenType: 1,
+		}
+		body,_ := json.Marshal(param)
+		logs.Debug("request param", "body", string(body))
+		resp, err := http.Post("https://hscan.org/blockBrowser/tokens/address/tokenHolder", "application/json", bytes.NewBuffer(body))
+		if err != nil {
+			logs.Error("get holder list failed")
+			return info
+		}
+		defer resp.Body.Close()
+		data, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			//Failed to read response.
+			return info
+		}
+		var holdinfo = HoldInfo{}
+		json.Unmarshal(data, &holdinfo)
+		if holdinfo.Code != 0 {
+			logs.Error("get holder info failed", "err", holdinfo.Msg)
+			return info
+		}
+		info["holdlist"] = holdinfo.Data
+	}
+	return info
 }
 
 func (p *PullEvent) GetLogs() {
