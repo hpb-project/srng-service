@@ -44,7 +44,7 @@ type Commit struct {
 
 // OracleMetaData contains all meta data concerning the Oracle contract.
 var OracleMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"CommitHash\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"random\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"RandomConsumed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"RevealSeed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"Subscribe\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"UnSubscribe\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"addAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"commit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"}],\"name\":\"getCommiterValidCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"}],\"name\":\"getConsumerConsumedCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"}],\"name\":\"getHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTotalStat\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"}],\"name\":\"getUserSubscribed\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"author\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"commit\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"revealed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedBlock\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"subsender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"substatus\",\"type\":\"uint8\"}],\"internalType\":\"structCommit[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"}],\"name\":\"getUserUnverifiedList\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"author\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"commit\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"revealed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedBlock\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"subsender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"substatus\",\"type\":\"uint8\"}],\"internalType\":\"structCommit[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"removeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"}],\"name\":\"requestRandom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"}],\"name\":\"reveal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_config\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_deposit\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_store\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_commitReveal\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_stat\",\"type\":\"address\"}],\"name\":\"setting\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"unsubscribeRandom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"CommitHash\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"RandomConsumed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"RevealSeed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"Subscribe\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"UnSubscribe\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"addAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"commit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"}],\"name\":\"getCommiterValidCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"}],\"name\":\"getConsumerConsumedCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"}],\"name\":\"getHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"commit\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"getRandom\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTotalStat\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"}],\"name\":\"getUserCommitsList\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"author\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"commit\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"revealed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedBlock\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"subsender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"substatus\",\"type\":\"uint8\"}],\"internalType\":\"structCommit[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"}],\"name\":\"getUserSubscribed\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"author\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"commit\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"revealed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedBlock\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"subsender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"substatus\",\"type\":\"uint8\"}],\"internalType\":\"structCommit[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"commiter\",\"type\":\"address\"}],\"name\":\"getUserUnverifiedList\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"author\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"commit\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"block\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"revealed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedBlock\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"subsender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"substatus\",\"type\":\"uint8\"}],\"internalType\":\"structCommit[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"removeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"token\",\"type\":\"bytes32\"}],\"name\":\"requestRandom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"seed\",\"type\":\"bytes32\"}],\"name\":\"reveal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_config\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_deposit\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_store\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_commitReveal\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_stat\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_internalstore\",\"type\":\"address\"}],\"name\":\"setting\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consumer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"unsubscribeRandom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // OracleABI is the input ABI used to generate the binding from.
@@ -286,6 +286,37 @@ func (_Oracle *OracleCallerSession) GetHash(seed [32]byte) ([32]byte, error) {
 	return _Oracle.Contract.GetHash(&_Oracle.CallOpts, seed)
 }
 
+// GetRandom is a free data retrieval call binding the contract method 0x5b6b90d2.
+//
+// Solidity: function getRandom(bytes32 commit, bytes signature) view returns(bytes32)
+func (_Oracle *OracleCaller) GetRandom(opts *bind.CallOpts, commit [32]byte, signature []byte) ([32]byte, error) {
+	var out []interface{}
+	err := _Oracle.contract.Call(opts, &out, "getRandom", commit, signature)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GetRandom is a free data retrieval call binding the contract method 0x5b6b90d2.
+//
+// Solidity: function getRandom(bytes32 commit, bytes signature) view returns(bytes32)
+func (_Oracle *OracleSession) GetRandom(commit [32]byte, signature []byte) ([32]byte, error) {
+	return _Oracle.Contract.GetRandom(&_Oracle.CallOpts, commit, signature)
+}
+
+// GetRandom is a free data retrieval call binding the contract method 0x5b6b90d2.
+//
+// Solidity: function getRandom(bytes32 commit, bytes signature) view returns(bytes32)
+func (_Oracle *OracleCallerSession) GetRandom(commit [32]byte, signature []byte) ([32]byte, error) {
+	return _Oracle.Contract.GetRandom(&_Oracle.CallOpts, commit, signature)
+}
+
 // GetTotalStat is a free data retrieval call binding the contract method 0x0256d5f8.
 //
 // Solidity: function getTotalStat() view returns(uint256, uint256, uint256)
@@ -317,6 +348,37 @@ func (_Oracle *OracleSession) GetTotalStat() (*big.Int, *big.Int, *big.Int, erro
 // Solidity: function getTotalStat() view returns(uint256, uint256, uint256)
 func (_Oracle *OracleCallerSession) GetTotalStat() (*big.Int, *big.Int, *big.Int, error) {
 	return _Oracle.Contract.GetTotalStat(&_Oracle.CallOpts)
+}
+
+// GetUserCommitsList is a free data retrieval call binding the contract method 0x23344446.
+//
+// Solidity: function getUserCommitsList(address commiter) view returns((address,bytes32,uint256,bytes32,bool,uint256,address,address,uint256,uint8)[])
+func (_Oracle *OracleCaller) GetUserCommitsList(opts *bind.CallOpts, commiter common.Address) ([]Commit, error) {
+	var out []interface{}
+	err := _Oracle.contract.Call(opts, &out, "getUserCommitsList", commiter)
+
+	if err != nil {
+		return *new([]Commit), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]Commit)).(*[]Commit)
+
+	return out0, err
+
+}
+
+// GetUserCommitsList is a free data retrieval call binding the contract method 0x23344446.
+//
+// Solidity: function getUserCommitsList(address commiter) view returns((address,bytes32,uint256,bytes32,bool,uint256,address,address,uint256,uint8)[])
+func (_Oracle *OracleSession) GetUserCommitsList(commiter common.Address) ([]Commit, error) {
+	return _Oracle.Contract.GetUserCommitsList(&_Oracle.CallOpts, commiter)
+}
+
+// GetUserCommitsList is a free data retrieval call binding the contract method 0x23344446.
+//
+// Solidity: function getUserCommitsList(address commiter) view returns((address,bytes32,uint256,bytes32,bool,uint256,address,address,uint256,uint8)[])
+func (_Oracle *OracleCallerSession) GetUserCommitsList(commiter common.Address) ([]Commit, error) {
+	return _Oracle.Contract.GetUserCommitsList(&_Oracle.CallOpts, commiter)
 }
 
 // GetUserSubscribed is a free data retrieval call binding the contract method 0xd4b612a2.
@@ -496,25 +558,25 @@ func (_Oracle *OracleTransactorSession) RenounceOwnership() (*types.Transaction,
 	return _Oracle.Contract.RenounceOwnership(&_Oracle.TransactOpts)
 }
 
-// RequestRandom is a paid mutator transaction binding the contract method 0xb8d0709c.
+// RequestRandom is a paid mutator transaction binding the contract method 0x951ab42e.
 //
-// Solidity: function requestRandom(address user, address consumer) returns(bool)
-func (_Oracle *OracleTransactor) RequestRandom(opts *bind.TransactOpts, user common.Address, consumer common.Address) (*types.Transaction, error) {
-	return _Oracle.contract.Transact(opts, "requestRandom", user, consumer)
+// Solidity: function requestRandom(address user, address consumer, bytes32 token) returns(bool)
+func (_Oracle *OracleTransactor) RequestRandom(opts *bind.TransactOpts, user common.Address, consumer common.Address, token [32]byte) (*types.Transaction, error) {
+	return _Oracle.contract.Transact(opts, "requestRandom", user, consumer, token)
 }
 
-// RequestRandom is a paid mutator transaction binding the contract method 0xb8d0709c.
+// RequestRandom is a paid mutator transaction binding the contract method 0x951ab42e.
 //
-// Solidity: function requestRandom(address user, address consumer) returns(bool)
-func (_Oracle *OracleSession) RequestRandom(user common.Address, consumer common.Address) (*types.Transaction, error) {
-	return _Oracle.Contract.RequestRandom(&_Oracle.TransactOpts, user, consumer)
+// Solidity: function requestRandom(address user, address consumer, bytes32 token) returns(bool)
+func (_Oracle *OracleSession) RequestRandom(user common.Address, consumer common.Address, token [32]byte) (*types.Transaction, error) {
+	return _Oracle.Contract.RequestRandom(&_Oracle.TransactOpts, user, consumer, token)
 }
 
-// RequestRandom is a paid mutator transaction binding the contract method 0xb8d0709c.
+// RequestRandom is a paid mutator transaction binding the contract method 0x951ab42e.
 //
-// Solidity: function requestRandom(address user, address consumer) returns(bool)
-func (_Oracle *OracleTransactorSession) RequestRandom(user common.Address, consumer common.Address) (*types.Transaction, error) {
-	return _Oracle.Contract.RequestRandom(&_Oracle.TransactOpts, user, consumer)
+// Solidity: function requestRandom(address user, address consumer, bytes32 token) returns(bool)
+func (_Oracle *OracleTransactorSession) RequestRandom(user common.Address, consumer common.Address, token [32]byte) (*types.Transaction, error) {
+	return _Oracle.Contract.RequestRandom(&_Oracle.TransactOpts, user, consumer, token)
 }
 
 // Reveal is a paid mutator transaction binding the contract method 0xfc334e8c.
@@ -538,25 +600,25 @@ func (_Oracle *OracleTransactorSession) Reveal(hash [32]byte, seed [32]byte) (*t
 	return _Oracle.Contract.Reveal(&_Oracle.TransactOpts, hash, seed)
 }
 
-// Setting is a paid mutator transaction binding the contract method 0xd67c7cd7.
+// Setting is a paid mutator transaction binding the contract method 0x500cbf45.
 //
-// Solidity: function setting(address _token, address _config, address _deposit, address _store, address _commitReveal, address _stat) returns()
-func (_Oracle *OracleTransactor) Setting(opts *bind.TransactOpts, _token common.Address, _config common.Address, _deposit common.Address, _store common.Address, _commitReveal common.Address, _stat common.Address) (*types.Transaction, error) {
-	return _Oracle.contract.Transact(opts, "setting", _token, _config, _deposit, _store, _commitReveal, _stat)
+// Solidity: function setting(address _token, address _config, address _deposit, address _store, address _commitReveal, address _stat, address _internalstore) returns()
+func (_Oracle *OracleTransactor) Setting(opts *bind.TransactOpts, _token common.Address, _config common.Address, _deposit common.Address, _store common.Address, _commitReveal common.Address, _stat common.Address, _internalstore common.Address) (*types.Transaction, error) {
+	return _Oracle.contract.Transact(opts, "setting", _token, _config, _deposit, _store, _commitReveal, _stat, _internalstore)
 }
 
-// Setting is a paid mutator transaction binding the contract method 0xd67c7cd7.
+// Setting is a paid mutator transaction binding the contract method 0x500cbf45.
 //
-// Solidity: function setting(address _token, address _config, address _deposit, address _store, address _commitReveal, address _stat) returns()
-func (_Oracle *OracleSession) Setting(_token common.Address, _config common.Address, _deposit common.Address, _store common.Address, _commitReveal common.Address, _stat common.Address) (*types.Transaction, error) {
-	return _Oracle.Contract.Setting(&_Oracle.TransactOpts, _token, _config, _deposit, _store, _commitReveal, _stat)
+// Solidity: function setting(address _token, address _config, address _deposit, address _store, address _commitReveal, address _stat, address _internalstore) returns()
+func (_Oracle *OracleSession) Setting(_token common.Address, _config common.Address, _deposit common.Address, _store common.Address, _commitReveal common.Address, _stat common.Address, _internalstore common.Address) (*types.Transaction, error) {
+	return _Oracle.Contract.Setting(&_Oracle.TransactOpts, _token, _config, _deposit, _store, _commitReveal, _stat, _internalstore)
 }
 
-// Setting is a paid mutator transaction binding the contract method 0xd67c7cd7.
+// Setting is a paid mutator transaction binding the contract method 0x500cbf45.
 //
-// Solidity: function setting(address _token, address _config, address _deposit, address _store, address _commitReveal, address _stat) returns()
-func (_Oracle *OracleTransactorSession) Setting(_token common.Address, _config common.Address, _deposit common.Address, _store common.Address, _commitReveal common.Address, _stat common.Address) (*types.Transaction, error) {
-	return _Oracle.Contract.Setting(&_Oracle.TransactOpts, _token, _config, _deposit, _store, _commitReveal, _stat)
+// Solidity: function setting(address _token, address _config, address _deposit, address _store, address _commitReveal, address _stat, address _internalstore) returns()
+func (_Oracle *OracleTransactorSession) Setting(_token common.Address, _config common.Address, _deposit common.Address, _store common.Address, _commitReveal common.Address, _stat common.Address, _internalstore common.Address) (*types.Transaction, error) {
+	return _Oracle.Contract.Setting(&_Oracle.TransactOpts, _token, _config, _deposit, _store, _commitReveal, _stat, _internalstore)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
@@ -962,7 +1024,7 @@ func (it *OracleRandomConsumedIterator) Close() error {
 type OracleRandomConsumed struct {
 	Commiter common.Address
 	Consumer common.Address
-	Random   [32]byte
+	Hash     [32]byte
 	Block    *big.Int
 	Time     *big.Int
 	Raw      types.Log // Blockchain specific contextual infos
@@ -970,7 +1032,7 @@ type OracleRandomConsumed struct {
 
 // FilterRandomConsumed is a free log retrieval operation binding the contract event 0xa6b50d46fd68ec1507309bfc0107c38fba251b3e06ad8a36416b1fb74e529bfe.
 //
-// Solidity: event RandomConsumed(address commiter, address consumer, bytes32 random, uint256 block, uint256 time)
+// Solidity: event RandomConsumed(address commiter, address consumer, bytes32 hash, uint256 block, uint256 time)
 func (_Oracle *OracleFilterer) FilterRandomConsumed(opts *bind.FilterOpts) (*OracleRandomConsumedIterator, error) {
 
 	logs, sub, err := _Oracle.contract.FilterLogs(opts, "RandomConsumed")
@@ -982,7 +1044,7 @@ func (_Oracle *OracleFilterer) FilterRandomConsumed(opts *bind.FilterOpts) (*Ora
 
 // WatchRandomConsumed is a free log subscription operation binding the contract event 0xa6b50d46fd68ec1507309bfc0107c38fba251b3e06ad8a36416b1fb74e529bfe.
 //
-// Solidity: event RandomConsumed(address commiter, address consumer, bytes32 random, uint256 block, uint256 time)
+// Solidity: event RandomConsumed(address commiter, address consumer, bytes32 hash, uint256 block, uint256 time)
 func (_Oracle *OracleFilterer) WatchRandomConsumed(opts *bind.WatchOpts, sink chan<- *OracleRandomConsumed) (event.Subscription, error) {
 
 	logs, sub, err := _Oracle.contract.WatchLogs(opts, "RandomConsumed")
@@ -1019,7 +1081,7 @@ func (_Oracle *OracleFilterer) WatchRandomConsumed(opts *bind.WatchOpts, sink ch
 
 // ParseRandomConsumed is a log parse operation binding the contract event 0xa6b50d46fd68ec1507309bfc0107c38fba251b3e06ad8a36416b1fb74e529bfe.
 //
-// Solidity: event RandomConsumed(address commiter, address consumer, bytes32 random, uint256 block, uint256 time)
+// Solidity: event RandomConsumed(address commiter, address consumer, bytes32 hash, uint256 block, uint256 time)
 func (_Oracle *OracleFilterer) ParseRandomConsumed(log types.Log) (*OracleRandomConsumed, error) {
 	event := new(OracleRandomConsumed)
 	if err := _Oracle.contract.UnpackLog(event, "RandomConsumed", log); err != nil {
