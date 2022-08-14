@@ -18,7 +18,7 @@ type TbRandomConsumed struct {
 	TxHash     string    `orm:"column(tx_hash);size(255);null" description:"交易hash"`
 	Consumer   string    `orm:"column(consumer);size(255);null" description:"消费者合约"`
 	Committer  string    `orm:"column(commiter);size(255);null" description:"提交者地址"`
-	Random     string    `orm:"column(random);size(255);null" description:"随机数"`
+	CommitHash string    `orm:"column(commithash);size(255);null" description:"随机数"`
 	Status     int       `orm:"column(status);null" description:"状态,1-正常 2-冻结"`
 	IsDeleted  int8      `orm:"column(is_deleted);null" description:"删除状态 0-正常 1-删除"`
 	SyncTime   time.Time `orm:"column(sync_time);type(timestamp);null;auto_now_add" description:"同步时间"`

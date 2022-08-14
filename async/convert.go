@@ -65,7 +65,7 @@ func ToTbRandomConsumed(vLog *types.Log, consumed *contracts.OracleRandomConsume
 	tbRandomConsumed.TxHash = strings.ToLower(vLog.TxHash.String())
 	tbRandomConsumed.BlockId = int64(vLog.BlockNumber)
 	tbRandomConsumed.Committer = strings.ToLower(consumed.Commiter.String())
-	tbRandomConsumed.Random = strings.ToLower(common.BytesToHash(consumed.Random[:]).String())
+	tbRandomConsumed.CommitHash = strings.ToLower(common.BytesToHash(consumed.Hash[:]).String())
 	tbRandomConsumed.Consumer = strings.ToLower(consumed.Consumer.String())
 
 	tbRandomConsumed.Status = 1
